@@ -34,10 +34,8 @@ void selectionSort(T num[], int length) {
 		throw invalid_argument("Pay attention to the input in selectionSort.");
 
 	for (int length2=length; length2!=0; length2--) {
-		for (int i=0; i!=length2; ++i) {
-			int index=largestElement(num, length2);
-			swap(num[index],num[length2-1]);
-		}
+		int index=largestElement(num, length2);
+		swap(num[index],num[length2-1]);
 	}
 }
 #endif
