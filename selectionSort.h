@@ -38,4 +38,23 @@ void selectionSort(T num[], int length) {
 		swap(num[index],num[length2-1]);
 	}
 }
+
+template <class T>
+void selectionSortv2(T num[], int length) {
+
+	if (num==nullptr||length<=0)
+		throw invalid_argument("Pay attention to the input in selectionSortv2.");
+
+	bool sorted=false;
+	int indexofMax=0;
+	for (int size=length; (!sorted)&&(size!=1); --size) {
+		sorted=true;
+		//the index of the largest element
+		for (int i=0; i!=size; ++i) {
+			if (num[indexofMax]<=num[i]) indexofMax=i;
+			else sorted=false;//意思是前边的元素并不都是按照从小到大的顺序排列的。
+		}
+		swap(num[indexofMax],num[size-1]);
+	}
+}
 #endif
