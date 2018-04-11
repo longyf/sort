@@ -4,6 +4,14 @@
 #include <stdexcept>
 using namespace std;
 
+int indexofMiddle(int begin, int end) {
+	if (begin>end) 
+        throw invalid_argument("Pay attention to the inputs.");
+
+	//产生随机数，在[begin,end]范围内。
+	return rand()%(end-begin+1)+begin;
+}
+
 template <class T>
 int quickSort_bf(T a[], int length, int begin, int end) {
 	if (a==nullptr||length<=0||begin<0||end>=length)
@@ -12,18 +20,19 @@ int quickSort_bf(T a[], int length, int begin, int end) {
 	if (length==1) 
 		return 0;
 
-	int index=(begin+end)>>1;
+	int index=indexofMiddle(begin,end);
+
 	swap(a[index],a[end]);
-	int small=-1;
-	for (int i=0; i!=end; ++i) {
-		if (a[i]<=a[end]) {
+	int small=begin-1;
+	for (int i=begin; i!=end; ++i) {
+		if (a[i]<a[end]) {
 			small++;
-			swap(a[small],a[i]);
+			if(small!=i)
+				swap(a[small],a[i]);
 		}
 	}
 	small++;
 	swap(a[small],a[end]);
-	cout<<small<<endl;
 	return small;
 
 }
